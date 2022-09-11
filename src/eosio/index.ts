@@ -1,11 +1,6 @@
 import { APIClient } from "@greymass/eosio";
+import { config } from "../config";
 import { signWithWebAuthn, SignWithWebAuthNParams } from "./webauthn";
-
-const config = {
-  services: {
-    chainRpc: "https://eos.blockmatic.io",
-  },
-};
 
 export const eosCoreApi = new APIClient({ url: config.services.chainRpc }).v1
   .chain;

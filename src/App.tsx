@@ -40,7 +40,7 @@ function App() {
       console.log("pushTransaction id", transaction_id);
       console.info("pushTransaction response", response);
     } catch (error) {
-      console.log("pushTransaction", pushTransaction);
+      console.log("pushTransaction error", error);
     }
   };
 

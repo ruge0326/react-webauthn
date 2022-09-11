@@ -45,6 +45,7 @@ function App() {
   };
 
   const faucetCall = async (quantity: string) => {
+    const formatted_account = checkAccountExt(account);
     try {
       const transaction = {
         actions: [
@@ -53,12 +54,12 @@ function App() {
             name: "issue",
             authorization: [
               {
-                actor: account,
+                actor: formatted_account,
                 permission: "active",
               },
             ],
             data: {
-              to: account,
+              to: formatted_account,
               quantity,
               memo: `${quantity} for 100x testing`,
             },

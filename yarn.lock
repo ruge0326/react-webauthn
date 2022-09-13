@@ -1813,6 +1813,37 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
+"@toolz/allow@^1.1.4":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@toolz/allow/-/allow-1.1.5.tgz#608ed42b41036a8b1fb7183c2ecc0e2dd59fbe8e"
+  integrity sha512-f0wXk1ueRMwTAVt7LYVZR45L2YWvFksHLdW66Mlx8lQcmQVr48vj0Pq+FiMrl/pugi2M7uOFK0QsK1s5Xh2jAA==
+  dependencies:
+    "@toolz/is-a-regular-object" "^1.0.1"
+    "@toolz/session-storage-is-available" "^1.0.0"
+
+"@toolz/is-a-regular-object@^1.0.1":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@toolz/is-a-regular-object/-/is-a-regular-object-1.0.2.tgz#0888a1e4ea0d78c9a555b146d0235000b4bf1757"
+  integrity sha512-TXUdXT2GQzlOPISJ2s43227Xuv44DJFURRXZsmOXLLsBP/2b7tKE66JEDd7/qqNDix4WQSOT+LHb/moHeJe3qQ==
+
+"@toolz/local-storage-is-available@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@toolz/local-storage-is-available/-/local-storage-is-available-1.0.0.tgz#1c183a6d7d946df9db52850e62627e98d92dbf26"
+  integrity sha512-Xe4wI9xkGXV5Uvc8+wYK86saktPWlfy2Kect7z8GajVGY8hZoaNLItozZZ0sKWNKw1v6Bz84OVGM1u/wB3eSuw==
+
+"@toolz/local-storage@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@toolz/local-storage/-/local-storage-1.0.5.tgz#24a63916db7e796a486a3f4d4f9b4cffbaf5c8bc"
+  integrity sha512-dXhMoG9657b7xD2NvTJcDt4z9WeMXm4YjMFdt3gKdkNESqTZ+FTSL59udrwg0cC+XTi+GJ3RXcbR/+g1UTtG5Q==
+  dependencies:
+    "@toolz/allow" "^1.1.4"
+    "@toolz/local-storage-is-available" "^1.0.0"
+
+"@toolz/session-storage-is-available@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@toolz/session-storage-is-available/-/session-storage-is-available-1.0.0.tgz#733d5382c2ad38e8aa285f79c3a85b3f86f80b11"
+  integrity sha512-r13RLYZSP1E2qoGT56FN1/gREIBuX/p7+OWs6pT90eKo+30daVBy2o4ac/eoBEcqVq9qHBeR7K7qAd4TmdIF/g==
+
 "@tootallnate/once@1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"

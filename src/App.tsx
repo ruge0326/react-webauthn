@@ -12,6 +12,7 @@ const referrer = "lefirst";
 const deviceName = `demo device ${new Date().getTime()}`;
 
 function App() {
+  const ref = React.useRef<HTMLButtonElement | null>(null);
   const [account, setAccount] = React.useState("");
   const [keyConfig, setKeyConfig] = React.useState({
     account: "",
@@ -24,15 +25,24 @@ function App() {
   const pushTransaction = async (transaction: any) => {
     console.log("pushTransaction", JSON.stringify(transaction));
 
+    // const x_referrer = localStorage.getItem("100x_referrer") || "";
+    const x_credId = localStorage.getItem("100x_cred_id") || "";
+    const x_pubKey = localStorage.getItem("100x_public_key") || "";
+    // const x_deviceName = localStorage.getItem("100x_device_name") || "";
+
     try {
       let response: any;
 
-      console.info("Attempting to sign with WebAuthn");
+      console.info("Attempting to sign with WebAuthn", {
+        actions: transaction.actions,
+        public_key: x_pubKey,
+        cred_id: x_credId,
+      });
 
       response = await pushTransactionWebAuthN({
         actions: transaction.actions,
-        public_key: keyConfig.public_key,
-        cred_id: keyConfig.cred_id,
+        public_key: x_pubKey,
+        cred_id: x_credId,
       });
 
       const transaction_id =
@@ -44,8 +54,9 @@ function App() {
     }
   };
 
-  const faucetCall = async (quantity: string) => {
-    const formatted_account = checkAccountExt(account);
+  const faucetCall = React.useCallback(async (quantity: string) => {
+    const x_account = localStorage.getItem("100x_account") || "";
+    const formatted_account = checkAccountExt(x_account);
     try {
       const transaction = {
         actions: [
@@ -71,7 +82,7 @@ function App() {
     } catch (err) {
       console.log("faucetCall error", err);
     }
-  };
+  }, []);
 
   const submit = async () => {
     console.log({ account });
@@ -89,6 +100,12 @@ function App() {
         public_key: pubKey,
         device_name: deviceName,
       });
+
+      localStorage.setItem("100x_referrer", referrer);
+      localStorage.setItem("100x_cred_id", credId);
+      localStorage.setItem("100x_public_key", pubKey);
+      localStorage.setItem("100x_device_name", deviceName);
+
       setKeyConfig({
         account: formatted_account,
         referrer,
@@ -102,6 +119,19 @@ function App() {
   React.useEffect(() => {
     console.log({ keyConfig });
   }, [keyConfig]);
+
+  React.useEffect(() => {
+    const push_button = ref.current;
+    if (push_button && push_button.getAttribute("listener") !== "true") {
+      push_button.addEventListener("click", (e) => {
+        console.log("yupiiiiii init");
+        faucetCall("1000.0000 USDT");
+        console.log("yupiiiiii finish");
+      });
+      push_button.setAttribute("listener", "true");
+      console.log("event has been attached");
+    }
+  }, [ref, faucetCall]);
 
   return (
     <div className="App">
@@ -122,6 +152,7 @@ function App() {
                 id="account"
                 value={account}
                 onChange={(event) => {
+                  localStorage.setItem("100x_account", event.target.value);
                   setAccount(event.target.value);
                 }}
               />
@@ -131,24 +162,32 @@ function App() {
             <br></br>
             {account && keyConfig.public_key && (
               <div>
-                <div>Account: {account}</div>
+                <div>-----</div>
+                <br></br>
+                <div>account: {keyConfig.account}</div>
+                <div>cred_id: {keyConfig.cred_id}</div>
+                <div>device_name: {keyConfig.device_name}</div>
                 <div>public_key: {keyConfig.public_key}</div>
+                <br></br>
               </div>
             )}
           </div>
           {keyConfig.public_key && (
             <div>
               <h1>Push Tx: {deviceName}</h1>
-              <input
+              {/* <input
                 type="button"
                 value="Push"
                 onClick={() => {
                   faucetCall("1000.0000 USDT");
                 }}
-              />
+              /> */}
               <br></br>
             </div>
           )}
+          <button ref={ref} type="button" value="Push" id="faucet">
+            PUSH gesture
+          </button>
         </div>
       </header>
     </div>

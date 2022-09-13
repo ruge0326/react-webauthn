@@ -119,7 +119,8 @@ export const createWebAuthNKey = async (account: string) => {
           0xfa, 0xce, 0xbe, 0xef, 0xfa, 0xce, 0x22, 0xbe, 0xef, 0xfa, 0xce,
           0xbe, 0xef, 0xfa, 0xce,
         ]).buffer,
-        attestation: "none",
+        attestation: "direct",
+        authenticatorSelection: { authenticatorAttachment: "platform" },
       },
     })) as any; // For some reason Credential.response is not in Credential type.
     const eosioPublicKey = createPublic(cred.response);

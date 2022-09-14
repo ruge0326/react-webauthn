@@ -94,8 +94,8 @@ function App() {
       console.log("faucetCall error", err);
     } finally {
       setTimeout(() => {
-        setProcessing(false), 3000;
-      });
+        setProcessing(false);
+      }, 3000);
     }
   }, []);
 

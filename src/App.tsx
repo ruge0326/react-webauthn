@@ -141,7 +141,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
-          <p>Webauthn build: 0.0.3 </p>
+          <p>Webauthn build: 0.0.4 </p>
 
           {/* <form onSubmit={submit}>
             <input>New account</input>
@@ -166,9 +166,6 @@ function App() {
             <br></br>
           </div>
           {last_tx_id && <span>TX: {last_tx_id}</span>}
-          <CopyToClipboard text={last_tx_id} onCopy={() => {}}>
-            <button>Copy account</button>
-          </CopyToClipboard>
           {keyConfig.public_key && (
             <div>
               <br></br>
@@ -195,7 +192,7 @@ function App() {
             </div>
           )}
           <button ref={ref} type="button" value="Push" id="faucet">
-            PUSH gesture
+            PUSH gesture - WAIT for Approval
           </button>
         </div>
       </header>

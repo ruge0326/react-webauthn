@@ -141,7 +141,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
-          <p>Webauthn build: 0.0.2 </p>
+          <p>Webauthn build: 0.0.3 </p>
 
           {/* <form onSubmit={submit}>
             <input>New account</input>

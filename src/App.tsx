@@ -14,6 +14,7 @@ const deviceName = `demo device ${new Date().getTime()}`;
 
 function App() {
   const ref = React.useRef<HTMLButtonElement | null>(null);
+  const [processing, setProcessing] = React.useState(false);
   const [account, setAccount] = React.useState(
     localStorage.getItem("100x_account") || ""
   );
@@ -64,6 +65,7 @@ function App() {
   };
 
   const faucetCall = React.useCallback(async (quantity: string) => {
+    setProcessing(true);
     const x_account = localStorage.getItem("100x_account") || "";
     const formatted_account = checkAccountExt(x_account);
     try {
@@ -90,6 +92,10 @@ function App() {
       await pushTransaction(transaction);
     } catch (err) {
       console.log("faucetCall error", err);
+    } finally {
+      setTimeout(() => {
+        setProcessing(false), 3000;
+      });
     }
   }, []);
 
@@ -142,6 +148,13 @@ function App() {
     }
   }, [ref, faucetCall]);
 
+  const disabled_push_tx =
+    !keyConfig.cred_id ||
+    !keyConfig.public_key ||
+    !keyConfig.account ||
+    !keyConfig.device_name ||
+    processing;
+
   return (
     <div className="App">
       <header className="App-header">
@@ -181,10 +194,6 @@ function App() {
           {keyConfig.public_key && (
             <div>
               <br></br>
-              <CopyToClipboard text={keyConfig.account} onCopy={() => {}}>
-                <button>Copy account</button>
-              </CopyToClipboard>
-              <br></br>
               <CopyToClipboard text={keyConfig.cred_id} onCopy={() => {}}>
                 <button>Copy cred_id</button>
               </CopyToClipboard>
@@ -203,7 +212,13 @@ function App() {
               <br></br>
             </div>
           )}
-          <button ref={ref} type="button" value="Push" id="faucet">
+          <button
+            ref={ref}
+            type="button"
+            value="Push"
+            id="faucet"
+            disabled={disabled_push_tx}
+          >
             PUSH gesture - WAIT for Approval
           </button>
         </div>

@@ -14,14 +14,18 @@ const deviceName = `demo device ${new Date().getTime()}`;
 
 function App() {
   const ref = React.useRef<HTMLButtonElement | null>(null);
-  const [account, setAccount] = React.useState("");
-  const [last_tx_id, setLastTxId] = React.useState("");
+  const [account, setAccount] = React.useState(
+    localStorage.getItem("100x_account") || ""
+  );
+  const [last_tx_id, setLastTxId] = React.useState(
+    localStorage.getItem("last_tx_id") || ""
+  );
   const [keyConfig, setKeyConfig] = React.useState({
-    account: "",
-    referrer: "",
-    cred_id: "",
-    public_key: "",
-    device_name: "",
+    account: localStorage.getItem("100x_account") || "",
+    referrer: localStorage.getItem("100x_referrer") || "",
+    cred_id: localStorage.getItem("100x_cred_id") || "",
+    public_key: localStorage.getItem("100x_public_key") || "",
+    device_name: localStorage.getItem("100x_device_name") || "",
   });
 
   const pushTransaction = async (transaction: any) => {
@@ -53,6 +57,7 @@ function App() {
       console.info("pushTransaction response", response);
       alert(transaction_id);
       setLastTxId(transaction_id);
+      localStorage.setItem("last_tx_id", transaction_id);
     } catch (error) {
       console.log("pushTransaction error", error);
     }
@@ -141,7 +146,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
-          <p>Webauthn build: 0.0.5 </p>
+          <p>Webauthn build: 0.0.6 </p>
 
           {/* <form onSubmit={submit}>
             <input>New account</input>

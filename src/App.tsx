@@ -15,6 +15,7 @@ const deviceName = `demo device ${new Date().getTime()}`;
 function App() {
   const ref = React.useRef<HTMLButtonElement | null>(null);
   const [account, setAccount] = React.useState("");
+  const [last_tx_id, setLastTxId] = React.useState("");
   const [keyConfig, setKeyConfig] = React.useState({
     account: "",
     referrer: "",
@@ -162,6 +163,10 @@ function App() {
             </form>
             <br></br>
           </div>
+          {last_tx_id && <span>TX: {last_tx_id}</span>}
+          <CopyToClipboard text={last_tx_id} onCopy={() => {}}>
+            <button>Copy account</button>
+          </CopyToClipboard>
           {account && keyConfig.public_key && (
             <div>
               <br></br>

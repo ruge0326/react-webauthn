@@ -66,8 +66,7 @@ function App() {
 
   const faucetCall = React.useCallback(async (quantity: string) => {
     setProcessing(true);
-    const x_account = localStorage.getItem("100x_account") || "";
-    const formatted_account = checkAccountExt(x_account);
+    const formatted_account = localStorage.getItem("100x_account") || "";
     try {
       const transaction = {
         actions: [
@@ -100,8 +99,8 @@ function App() {
   }, []);
 
   const submit = async () => {
-    console.log({ account });
-    const formatted_account = checkAccountExt(account);
+    const formatted_account = localStorage.getItem("100x_account") || "";
+    console.log({ formatted_account });
     console.log({ formatted_account, partyId: window.location.host });
     const { pubKey, credId, error } = await createWebAuthNKey(
       formatted_account
@@ -159,7 +158,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
-          <p>Webauthn build: 0.0.8 </p>
+          <p>Webauthn build: 0.0.9 </p>
           <p>Current account: {checkAccountExt(account)} </p>
 
           {/* <form onSubmit={submit}>
@@ -175,9 +174,11 @@ function App() {
                 id="account"
                 value={account}
                 onChange={(event) => {
-                  const new_account = (event.target.value || "").toLowerCase();
-                  localStorage.setItem("100x_account", new_account);
-                  setAccount(new_account);
+                  const formatted_account = checkAccountExt(
+                    (event.target.value || "").toLowerCase()
+                  );
+                  localStorage.setItem("100x_account", formatted_account);
+                  setAccount(formatted_account);
                 }}
               />
               <br></br>

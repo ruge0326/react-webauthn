@@ -154,6 +154,22 @@ function App() {
     !keyConfig.device_name ||
     processing;
 
+  const clearStore = () => {
+    localStorage.setItem("100x_referrer", "");
+    localStorage.setItem("100x_cred_id", "");
+    localStorage.setItem("100x_public_key", "");
+    localStorage.setItem("100x_device_name", "");
+    localStorage.setItem("100x_account", "");
+    setAccount("");
+    setKeyConfig({
+      account: "",
+      referrer: "",
+      cred_id: "",
+      public_key: "",
+      device_name: "",
+    });
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -183,6 +199,11 @@ function App() {
               />
               <br></br>
               <input type="button" value="Create Account" onClick={submit} />
+              <input
+                type="button"
+                value="Clear localstorage"
+                onClick={clearStore}
+              />
             </form>
             <br></br>
           </div>

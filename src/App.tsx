@@ -169,7 +169,7 @@ function App() {
           <CopyToClipboard text={last_tx_id} onCopy={() => {}}>
             <button>Copy account</button>
           </CopyToClipboard>
-          {account && keyConfig.public_key && (
+          {keyConfig.public_key && (
             <div>
               <br></br>
               <CopyToClipboard text={keyConfig.account} onCopy={() => {}}>

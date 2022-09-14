@@ -162,16 +162,28 @@ function App() {
             </form>
             <br></br>
           </div>
-          {keyConfig.public_key && (
+          {account && keyConfig.public_key && (
             <div>
-              <h1>Push Tx: {deviceName}</h1>
-              {/* <input
-                type="button"
-                value="Push"
-                onClick={() => {
-                  faucetCall("1000.0000 USDT");
-                }}
-              /> */}
+              <br></br>
+              <CopyToClipboard text={keyConfig.account} onCopy={() => {}}>
+                <button>Copy account</button>
+              </CopyToClipboard>
+              <br></br>
+              <CopyToClipboard text={keyConfig.cred_id} onCopy={() => {}}>
+                <button>Copy cred_id</button>
+              </CopyToClipboard>
+              <br></br>
+              <CopyToClipboard text={keyConfig.public_key} onCopy={() => {}}>
+                <button>Copy public_key</button>
+              </CopyToClipboard>
+              <br></br>
+              <CopyToClipboard text={keyConfig.account} onCopy={() => {}}>
+                <button>Copy account</button>
+              </CopyToClipboard>
+              <br></br>
+              <CopyToClipboard text={keyConfig.device_name} onCopy={() => {}}>
+                <button>Copy device_name</button>
+              </CopyToClipboard>
               <br></br>
             </div>
           )}
@@ -180,28 +192,6 @@ function App() {
           </button>
         </div>
       </header>
-      {account && keyConfig.public_key && (
-        <div>
-          <div>-----</div>
-          <br></br>
-          <CopyToClipboard text={keyConfig.account} onCopy={() => {}}>
-            <button>Copy account</button>
-          </CopyToClipboard>
-          <CopyToClipboard text={keyConfig.cred_id} onCopy={() => {}}>
-            <button>Copy cred_id</button>
-          </CopyToClipboard>
-          <CopyToClipboard text={keyConfig.public_key} onCopy={() => {}}>
-            <button>Copy public_key</button>
-          </CopyToClipboard>
-          <CopyToClipboard text={keyConfig.account} onCopy={() => {}}>
-            <button>Copy account</button>
-          </CopyToClipboard>
-          <CopyToClipboard text={keyConfig.device_name} onCopy={() => {}}>
-            <button>Copy device_name</button>
-          </CopyToClipboard>
-          <br></br>
-        </div>
-      )}
     </div>
   );
 }

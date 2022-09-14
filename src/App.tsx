@@ -141,7 +141,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
-          <p>Webauthn build: 0.0.4 </p>
+          <p>Webauthn build: 0.0.5 </p>
 
           {/* <form onSubmit={submit}>
             <input>New account</input>
@@ -165,7 +165,13 @@ function App() {
             </form>
             <br></br>
           </div>
-          {last_tx_id && <span>TX: {last_tx_id}</span>}
+          <br></br>
+          {last_tx_id && (
+            <CopyToClipboard text={last_tx_id} onCopy={() => {}}>
+              <button>Copy last_tx_id</button>
+            </CopyToClipboard>
+          )}
+          <br></br>
           {keyConfig.public_key && (
             <div>
               <br></br>

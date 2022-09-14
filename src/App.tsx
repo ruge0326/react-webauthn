@@ -160,17 +160,6 @@ function App() {
               <input type="button" value="Create Account" onClick={submit} />
             </form>
             <br></br>
-            {account && keyConfig.public_key && (
-              <div>
-                <div>-----</div>
-                <br></br>
-                <div>account: {keyConfig.account}</div>
-                <div>cred_id: {keyConfig.cred_id}</div>
-                <div>device_name: {keyConfig.device_name}</div>
-                <div>public_key: {keyConfig.public_key}</div>
-                <br></br>
-              </div>
-            )}
           </div>
           {keyConfig.public_key && (
             <div>
@@ -190,6 +179,17 @@ function App() {
           </button>
         </div>
       </header>
+      {account && keyConfig.public_key && (
+        <div>
+          <div>-----</div>
+          <br></br>
+          <div>account: {keyConfig.account}</div>
+          <div>cred_id: {keyConfig.cred_id}</div>
+          <div>device_name: {keyConfig.device_name}</div>
+          <div>public_key: {keyConfig.public_key}</div>
+          <br></br>
+        </div>
+      )}
     </div>
   );
 }

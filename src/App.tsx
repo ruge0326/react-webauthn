@@ -147,6 +147,7 @@ function App() {
       <header className="App-header">
         <div>
           <p>Webauthn build: 0.0.6 </p>
+          <p>Current account: {checkAccountExt(account)} </p>
 
           {/* <form onSubmit={submit}>
             <input>New account</input>

@@ -159,7 +159,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
-          <p>Webauthn build: 0.0.7 </p>
+          <p>Webauthn build: 0.0.8 </p>
           <p>Current account: {checkAccountExt(account)} </p>
 
           {/* <form onSubmit={submit}>
@@ -175,8 +175,9 @@ function App() {
                 id="account"
                 value={account}
                 onChange={(event) => {
-                  localStorage.setItem("100x_account", event.target.value);
-                  setAccount(event.target.value);
+                  const new_account = (event.target.value || "").toLowerCase();
+                  localStorage.setItem("100x_account", new_account);
+                  setAccount(new_account);
                 }}
               />
               <br></br>

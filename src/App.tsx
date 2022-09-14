@@ -51,6 +51,7 @@ function App() {
         response?.transaction?.id.toString() || response.transaction_id;
       console.log("pushTransaction id", transaction_id);
       console.info("pushTransaction response", response);
+      alert(transaction_id);
       setLastTxId(transaction_id);
     } catch (error) {
       console.log("pushTransaction error", error);

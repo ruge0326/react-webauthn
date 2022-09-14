@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { createWebAuthNKey } from "./eosio/webauthn";
 import { pushTransactionWebAuthN } from "./eosio";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const checkAccountExt = (account: string) =>
   account.split(".").length === 1 && account.length < 12
@@ -183,10 +184,21 @@ function App() {
         <div>
           <div>-----</div>
           <br></br>
-          <div>account: {keyConfig.account}</div>
-          <div>cred_id: {keyConfig.cred_id}</div>
-          <div>device_name: {keyConfig.device_name}</div>
-          <div>public_key: {keyConfig.public_key}</div>
+          <CopyToClipboard text={keyConfig.account} onCopy={() => {}}>
+            <button>Copy account</button>
+          </CopyToClipboard>
+          <CopyToClipboard text={keyConfig.cred_id} onCopy={() => {}}>
+            <button>Copy cred_id</button>
+          </CopyToClipboard>
+          <CopyToClipboard text={keyConfig.public_key} onCopy={() => {}}>
+            <button>Copy public_key</button>
+          </CopyToClipboard>
+          <CopyToClipboard text={keyConfig.account} onCopy={() => {}}>
+            <button>Copy account</button>
+          </CopyToClipboard>
+          <CopyToClipboard text={keyConfig.device_name} onCopy={() => {}}>
+            <button>Copy device_name</button>
+          </CopyToClipboard>
           <br></br>
         </div>
       )}
